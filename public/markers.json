@@ -75,11 +75,11 @@
     {
       "id": 9,
       "image": "../../src/img/Apartment 9",
-      "price": "UAH 11500",
-      "description": "Renting out a one-bedroom apartment",
+      "price": "UAH 18500",
+      "description": "Renting out a three-bedroom apartment",
       "address": "Zoolohichna str.",
       "geocode": [50.460664, 30.463541],
-      "popup": "One-bedroom apartment"
+      "popup": "Three-bedroom apartment"
     },
     {
       "id": 10,
