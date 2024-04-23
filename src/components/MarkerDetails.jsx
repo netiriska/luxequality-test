@@ -1,19 +1,27 @@
+import { Button, Card } from "react-bootstrap";
+
 const MarkerDetails = ({ selectedMarker }) => {
   if (!selectedMarker) {
     return <div>No ads selected</div>;
   }
 
   return (
-    <div>
-      <h4>{selectedMarker.description}</h4>
-      <p>{selectedMarker.price}</p>
-      <img
+    <Card style={{ width: "18rem" }}>
+      <Card.Img
+        variant="top"
         src={require(`../../src/img/${selectedMarker.image}`)}
-        alt=""
-        style={{ width: "150px", height: "200px" }}
-        px
+        alt="apartment photo"
+        style={{ width: "auto", height: "250px" }}
       />
-    </div>
+      <Card.Body>
+        <Card.Title>{selectedMarker.popup}</Card.Title>
+        <Card.Text>{selectedMarker.description}</Card.Text>
+        <Card.Text style={{ fontWeight: "bold" }}>
+          {selectedMarker.price}
+        </Card.Text>
+        <Button variant="primary">See details</Button>
+      </Card.Body>
+    </Card>
   );
 };
 
