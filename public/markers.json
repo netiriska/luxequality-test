@@ -2,7 +2,7 @@
   "markers": [
     {
       "id": 1,
-      "image": "../../src/img/Apartment 1",
+      "image": "Apartment 1.jpg",
       "price": "UAH 10000",
       "description": "Renting out a one-bedroom apartment",
       "address": "Liubomyra Guzara Pros.",
@@ -11,7 +11,7 @@
     },
     {
       "id": 2,
-      "image": "../../src/img/Apartment 2",
+      "image": "Apartment 2.jpg",
       "price": "UAH 16000",
       "description": "Renting out a three-bedroom apartment",
       "address": "Vatslava Havela Blvd.",
@@ -20,7 +20,7 @@
     },
     {
       "id": 3,
-      "image": "../../src/img/Apartment 3",
+      "image": "Apartment 3.jpg",
       "price": "UAH 13000",
       "description": "Renting out a two-bedroom apartment",
       "address": "Borshchahivska str.",
@@ -29,7 +29,7 @@
     },
     {
       "id": 4,
-      "image": "../../src/img/Apartment 4",
+      "image": "Apartment 4.jpg",
       "price": "UAH 14500",
       "description": "Renting out a studio apartment",
       "address": "Vidradnyi Pros.",
@@ -38,7 +38,7 @@
     },
     {
       "id": 5,
-      "image": "../../src/img/Apartment 5",
+      "image": "Apartment 5.jpg",
       "price": "UAH 15000",
       "description": "Renting out a two-bedroom apartment",
       "address": "Mykoly Vasylenka str.",
@@ -47,7 +47,7 @@
     },
     {
       "id": 6,
-      "image": "../../src/img/Apartment 6",
+      "image": "Apartment 6.jpg",
       "price": "UAH 18500",
       "description": "Renting out a three-bedroom apartment",
       "address": "Vadyma Getmana str.",
@@ -56,7 +56,7 @@
     },
     {
       "id": 7,
-      "image": "../../src/img/Apartment 7",
+      "image": "Apartment 7.jpg",
       "price": "UAH 16000",
       "description": "Renting out a studio apartment",
       "address": "Beresteyskyi Pros.",
@@ -65,7 +65,7 @@
     },
     {
       "id": 8,
-      "image": "../../src/img/Apartment 8",
+      "image": "Apartment 8.jpg",
       "price": "UAH 9800",
       "description": "Renting out a one-bedroom apartment",
       "address": "Dehtiarivska str.",
@@ -74,7 +74,7 @@
     },
     {
       "id": 9,
-      "image": "../../src/img/Apartment 9",
+      "image": "Apartment 9.jpg",
       "price": "UAH 18500",
       "description": "Renting out a three-bedroom apartment",
       "address": "Zoolohichna str.",
@@ -83,7 +83,7 @@
     },
     {
       "id": 10,
-      "image": "../../src/img/Apartment 10",
+      "image": "Apartment 10.jpg",
       "price": "UAH 17500",
       "description": "Renting out a studio apartment",
       "address": "Moldovska str.",
