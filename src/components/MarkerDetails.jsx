@@ -19,7 +19,7 @@ const MarkerDetails = ({ selectedMarker }) => {
         <Card.Text style={{ fontWeight: "bold" }}>
           {selectedMarker.price}
         </Card.Text>
-        <Button variant="primary">See details</Button>
+        <Button variant="outline-info">See details</Button>
       </Card.Body>
     </Card>
   );

@@ -1,11 +1,11 @@
+import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 import { Icon, divIcon, point } from "leaflet";
-import geoIcon from "../icons/geo-icon.svg";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import { useEffect, useState } from "react";
+import geoIcon from "../icons/geo-icon.svg";
 import MarkerDetails from "./MarkerDetails";
+import "leaflet/dist/leaflet.css";
 
 export default function Main() {
   const [markers, setMarkers] = useState([]);
