@@ -6,6 +6,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import geoIcon from "../icons/geo-icon.svg";
 import MarkerDetails from "./MarkerDetails";
 import "leaflet/dist/leaflet.css";
+import NewMarkerModal from "./NewMarkerModal";
 
 export default function Main() {
   const [markers, setMarkers] = useState([]);
@@ -41,6 +42,12 @@ export default function Main() {
 
   return (
     <Container fluid={true}>
+      <Row>
+        <Col>
+          <p>Ads</p>{" "}
+          <NewMarkerModal markers={markers} setMarkers={setMarkers} />
+        </Col>
+      </Row>
       <Row>
         <Col>Options</Col>
         <Col xs={8}>
