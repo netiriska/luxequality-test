@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon, divIcon, point } from "leaflet";
@@ -11,6 +11,8 @@ import NewMarkerModal from "./NewMarkerModal";
 export default function Main() {
   const [markers, setMarkers] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
+  const [visibleMarkers, setVisibleMarkers] = useState([]);
+  const mapRef = useRef(null);
 
   const handleMarkerClick = (marker) => {
     setSelectedMarker(marker);
@@ -40,6 +42,30 @@ export default function Main() {
     });
   };
 
+  useEffect(() => {
+    if (!mapRef.current) return;
+
+    const map = mapRef.current;
+    const updateVisibleMarkers = () => {
+      const bounds = map.getBounds();
+      const visibleMarkers = markers.filter((marker) =>
+        bounds.contains(marker.geocode)
+      );
+      setVisibleMarkers(visibleMarkers);
+      console.log("Visible Markers:", visibleMarkers);
+    };
+
+    map.on("zoomend", updateVisibleMarkers);
+    map.on("moveend", updateVisibleMarkers);
+
+    updateVisibleMarkers();
+
+    return () => {
+      map.off("zoomend", updateVisibleMarkers);
+      map.off("moveend", updateVisibleMarkers);
+    };
+  }, [markers]);
+
   return (
     <Container fluid={true}>
       <Row>
@@ -52,7 +78,11 @@ export default function Main() {
         <Col>Options</Col>
         <Col xs={8}>
           {markers.length > 0 && (
-            <MapContainer center={[50.4500336, 30.5241361]} zoom={13}>
+            <MapContainer
+              center={[50.4500336, 30.5241361]}
+              zoom={13}
+              ref={mapRef}
+            >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -62,7 +92,7 @@ export default function Main() {
                 chunkedLoading
                 iconCreateFunction={createCustomClusterIcon}
               >
-                {markers.map((marker) => (
+                {visibleMarkers.map((marker) => (
                   <Marker
                     key={marker.id}
                     position={marker.geocode}
