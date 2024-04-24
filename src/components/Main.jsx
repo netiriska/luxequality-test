@@ -4,9 +4,9 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon, divIcon, point } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import geoIcon from "../icons/geo-icon.svg";
-import MarkerDetails from "./MarkerDetails";
 import "leaflet/dist/leaflet.css";
 import NewMarkerModal from "./NewMarkerModal";
+import MarkersDetails from "./MarkersDetails";
 
 export default function Main() {
   const [markers, setMarkers] = useState([]);
@@ -16,11 +16,8 @@ export default function Main() {
 
   const handleMarkerClick = (marker) => {
     setSelectedMarker(marker);
+    console.log("Selected Marker:", marker);
   };
-
-  useEffect(() => {
-    console.log("Selected Marker:", selectedMarker);
-  }, [selectedMarker]);
 
   useEffect(() => {
     fetch("/markers.json")
@@ -48,10 +45,10 @@ export default function Main() {
     const map = mapRef.current;
     const updateVisibleMarkers = () => {
       const bounds = map.getBounds();
-      const visibleMarkers = markers.filter((marker) =>
+      const filteredMarkers = markers.filter((marker) =>
         bounds.contains(marker.geocode)
       );
-      setVisibleMarkers(visibleMarkers);
+      setVisibleMarkers(filteredMarkers);
       console.log("Visible Markers:", visibleMarkers);
     };
 
@@ -91,7 +88,7 @@ export default function Main() {
                 chunkedLoading
                 iconCreateFunction={createCustomClusterIcon}
               >
-                {visibleMarkers.map((marker) => (
+                {markers.map((marker) => (
                   <Marker
                     key={marker.id}
                     position={marker.geocode}
@@ -109,7 +106,7 @@ export default function Main() {
         </Col>
         <Col>
           <NewMarkerModal markers={markers} setMarkers={setMarkers} />
-          <MarkerDetails
+          <MarkersDetails
             selectedMarker={selectedMarker}
             visibleMarkers={visibleMarkers}
           />
