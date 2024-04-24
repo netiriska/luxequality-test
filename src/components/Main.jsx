@@ -71,7 +71,6 @@ export default function Main() {
       <Row>
         <Col>
           <p>Ads</p>{" "}
-          <NewMarkerModal markers={markers} setMarkers={setMarkers} />
         </Col>
       </Row>
       <Row>
@@ -109,6 +108,10 @@ export default function Main() {
           )}
         </Col>
         <Col>
+          <NewMarkerModal
+            markers={markers}
+            setMarkers={setMarkers}
+          />
           <MarkerDetails
             selectedMarker={selectedMarker}
             visibleMarkers={visibleMarkers}

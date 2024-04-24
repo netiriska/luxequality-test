@@ -4,10 +4,14 @@ const MarkerDetails = ({ selectedMarker, visibleMarkers }) => {
   return (
     <div>
       {selectedMarker ? (
-        <Card style={{ width: "18rem" }}>
+        <Card style={{ width: "18rem", marginTop: "20px" }}>
           <Card.Img
             variant="top"
-            src={require(`../../src/img/${selectedMarker.image}`)}
+            src={
+              selectedMarker && selectedMarker.image
+                ? require(`../../src/img/${selectedMarker.image}`)
+                : ""
+            }
             alt="apartment photo"
             style={{ width: "auto", height: "250px" }}
           />
@@ -23,10 +27,18 @@ const MarkerDetails = ({ selectedMarker, visibleMarkers }) => {
         <Row>
           {visibleMarkers.map((marker) => (
             <Col key={marker.id}>
-              <Card style={{ width: "18rem", marginBottom: "20px" }}>
+              <Card
+                style={{
+                  width: "18rem",
+                  marginBottom: "20px",
+                  marginTop: "20px",
+                }}
+              >
                 <Card.Img
                   variant="top"
-                  src={require(`../../src/img/${marker.image}`)}
+                  src={
+                    marker.image ? require(`../../src/img/${marker.image}`) : ""
+                  }
                   alt="apartment photo"
                   style={{ width: "auto", height: "250px" }}
                 />
