@@ -70,7 +70,7 @@ export default function Main() {
     <Container fluid={true}>
       <Row>
         <Col>
-          <p>Ads</p>{" "}
+          <h4 style={{ textAlign: "center" }}>Find Rental Ads Here</h4>{" "}
         </Col>
       </Row>
       <Row>
@@ -108,10 +108,7 @@ export default function Main() {
           )}
         </Col>
         <Col>
-          <NewMarkerModal
-            markers={markers}
-            setMarkers={setMarkers}
-          />
+          <NewMarkerModal markers={markers} setMarkers={setMarkers} />
           <MarkerDetails
             selectedMarker={selectedMarker}
             visibleMarkers={visibleMarkers}

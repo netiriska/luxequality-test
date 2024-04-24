@@ -15,7 +15,7 @@ export default function NewMarkerModal({ markers, setMarkers }) {
   const handleModalClose = () => setShowModal(false);
 
   function handleCreateNewAd() {
-    console.log(markers)
+    console.log(markers);
 
     const newMarker = {
       id: markers.length + 1,
