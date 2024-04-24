@@ -109,7 +109,10 @@ export default function Main() {
           )}
         </Col>
         <Col>
-          <MarkerDetails selectedMarker={selectedMarker} />
+          <MarkerDetails
+            selectedMarker={selectedMarker}
+            visibleMarkers={visibleMarkers}
+          />
         </Col>
       </Row>
     </Container>
