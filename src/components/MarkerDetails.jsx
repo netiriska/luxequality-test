@@ -6,7 +6,7 @@ const MarkerDetails = ({ marker }) => {
   }
 
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card className="mt-2" style={{ width: "18rem" }}>
       <Card.Img
         variant="top"
         src={marker.image ? require(`../../src/img/${marker.image}`) : ""}

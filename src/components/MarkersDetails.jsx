@@ -1,4 +1,3 @@
-import { Card, Col, Row } from "react-bootstrap";
 import MarkerDetails from "./MarkerDetails";
 
 const MarkersDetails = ({ selectedMarker, visibleMarkers }) => {

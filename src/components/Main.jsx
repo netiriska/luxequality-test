@@ -49,7 +49,7 @@ export default function Main() {
         bounds.contains(marker.geocode)
       );
       setVisibleMarkers(filteredMarkers);
-      console.log("Visible Markers:", visibleMarkers);
+      console.log("Visible Markers:", filteredMarkers);
     };
 
     map.on("zoomend", updateVisibleMarkers);
@@ -73,36 +73,34 @@ export default function Main() {
       <Row>
         <Col>Options</Col>
         <Col xs={8}>
-          {markers.length > 0 && (
-            <MapContainer
-              center={[50.4500336, 30.5241361]}
-              zoom={13}
-              ref={mapRef}
-            >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
+          <MapContainer
+            center={[50.4500336, 30.5241361]}
+            zoom={13}
+            ref={mapRef}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
 
-              <MarkerClusterGroup
-                chunkedLoading
-                iconCreateFunction={createCustomClusterIcon}
-              >
-                {markers.map((marker) => (
-                  <Marker
-                    key={marker.id}
-                    position={marker.geocode}
-                    icon={customIcon}
-                    eventHandlers={{
-                      click: () => handleMarkerClick(marker),
-                    }}
-                  >
-                    <Popup>{marker.popup}</Popup>
-                  </Marker>
-                ))}
-              </MarkerClusterGroup>
-            </MapContainer>
-          )}
+            <MarkerClusterGroup
+              chunkedLoading
+              iconCreateFunction={createCustomClusterIcon}
+            >
+              {visibleMarkers.map((marker) => (
+                <Marker
+                  key={marker.id}
+                  position={marker.geocode}
+                  icon={customIcon}
+                  eventHandlers={{
+                    click: () => handleMarkerClick(marker),
+                  }}
+                >
+                  <Popup>{marker.popup}</Popup>
+                </Marker>
+              ))}
+            </MarkerClusterGroup>
+          </MapContainer>
         </Col>
         <Col>
           <NewMarkerModal markers={markers} setMarkers={setMarkers} />
