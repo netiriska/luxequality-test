@@ -15,7 +15,7 @@ export default function Main() {
   const [visibleMarkers, setVisibleMarkers] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState("");
   const filterOptions = {
-    price: ["All", "Under UAH10000", "UAH10000-15000", "Over UAH15000"],
+    price: ["All", "Under 10000", "10000-15000", "Over 15000"],
   };
 
   const mapRef = useRef(null);
@@ -84,13 +84,13 @@ export default function Main() {
   useEffect(() => {
     setFilteredMarkers(
       markers.filter((marker) => {
-        const price = parseFloat(marker.price.split(" ")[1]);
+        const price = parseFloat(marker.price);
         switch (selectedPrice) {
-          case "Under UAH10000":
+          case "Under 10000":
             return price < 10000;
-          case "UAH10000-15000":
+          case "10000-15000":
             return price >= 10000 && price <= 15000;
-          case "Over UAH15000":
+          case "Over 15000":
             return price > 15000;
           default:
             return true;

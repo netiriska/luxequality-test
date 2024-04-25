@@ -5,7 +5,7 @@ export default function NewMarkerModal({ markers, setMarkers }) {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [address, setAddress] = useState("");
   const [popup, setPopup] = useState("");
 
@@ -81,11 +81,12 @@ export default function NewMarkerModal({ markers, setMarkers }) {
                 Price:
               </label>
               <input
-                type="text"
+                type="number"
                 className="form-control"
                 id="newMarkerPrice"
                 value={price}
-                onChange={(event) => setPrice(event.target.value)}
+                min="0"
+                onChange={(event) => setPrice(event.target.valueAsNumber)}
               />
             </div>
             <div className="mb-3">

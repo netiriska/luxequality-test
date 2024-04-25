@@ -16,7 +16,7 @@ const MarkerDetails = ({ marker }) => {
       <Card.Body>
         <Card.Title>{marker.popup}</Card.Title>
         <Card.Text>{marker.description}</Card.Text>
-        <Card.Text style={{ fontWeight: "bold" }}>{marker.price}</Card.Text>
+        <Card.Text style={{ fontWeight: "bold" }}>UAH {marker.price}</Card.Text>
       </Card.Body>
     </Card>
   );
