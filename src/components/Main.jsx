@@ -30,7 +30,7 @@ export default function Main() {
   };
 
   useEffect(() => {
-    fetch("/markers.json")
+    fetch("/luxequality-test/markers.json")
       .then((response) => response.json())
       .then((result) => setMarkers(result.markers))
       .catch((error) => console.error("Error fetching markers:", error));
