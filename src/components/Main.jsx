@@ -59,6 +59,7 @@ export default function Main() {
     map.on("zoomend", updateVisibleMarkers);
     map.on("moveend", updateVisibleMarkers);
     map.on("click", resetSelectedMarker);
+    map.on("movestart", resetSelectedMarker);
 
     updateVisibleMarkers();
 
@@ -66,6 +67,7 @@ export default function Main() {
       map.off("zoomend", updateVisibleMarkers);
       map.off("moveend", updateVisibleMarkers);
       map.off("click", resetSelectedMarker);
+      map.off("movestart", resetSelectedMarker);
     };
   }, [markers]);
 
