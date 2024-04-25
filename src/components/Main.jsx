@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon, divIcon, point } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
@@ -12,6 +12,11 @@ export default function Main() {
   const [markers, setMarkers] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [visibleMarkers, setVisibleMarkers] = useState([]);
+  const [selectedPrice, setSelectedPrice] = useState("");
+  const filterOptions = {
+    price: ["All", "Under UAH10000", "UAH10000-15000", "Over UAH15000"],
+  };
+
   const mapRef = useRef(null);
 
   const handleMarkerClick = (marker) => {
@@ -71,6 +76,10 @@ export default function Main() {
     };
   }, [markers]);
 
+  const handlePriceChange = (event) => {
+    setSelectedPrice(event.target.value);
+  };
+
   return (
     <Container fluid={true}>
       <Row>
@@ -79,7 +88,20 @@ export default function Main() {
         </Col>
       </Row>
       <Row>
-        <Col>Options</Col>
+        <Col>
+          <Form.Select
+            aria-label="Search by price"
+            value={selectedPrice}
+            onChange={handlePriceChange}
+          >
+            <option>Search by price</option>
+            {filterOptions.price.map((price) => (
+              <option key={price} value={price}>
+                {price}
+              </option>
+            ))}
+          </Form.Select>
+        </Col>
         <Col xs={8}>
           <MapContainer
             center={[50.4500336, 30.5241361]}
@@ -116,6 +138,7 @@ export default function Main() {
           <MarkersDetails
             selectedMarker={selectedMarker}
             visibleMarkers={visibleMarkers}
+            selectedPrice={selectedPrice}
           />
         </Col>
       </Row>
