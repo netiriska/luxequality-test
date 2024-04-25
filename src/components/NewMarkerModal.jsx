@@ -11,7 +11,15 @@ export default function NewMarkerModal({ markers, setMarkers }) {
 
   const [showModal, setShowModal] = useState(false);
 
-  const handleModalOpen = () => setShowModal(true);
+  const handleModalOpen = () => {
+    setLatitude("");
+    setLongitude("");
+    setDescription("");
+    setPrice(0);
+    setAddress("");
+    setPopup("");
+    setShowModal(true);
+  };
   const handleModalClose = () => setShowModal(false);
 
   function handleCreateNewAd() {

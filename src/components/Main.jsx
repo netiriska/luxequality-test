@@ -108,12 +108,12 @@ export default function Main() {
       </Row>
       <Row>
         <Col>
+          <Form.Label>Search by price, UAH</Form.Label>
           <Form.Select
             aria-label="Search by price"
             value={selectedPrice}
             onChange={handlePriceChange}
           >
-            <option>Search by price</option>
             {filterOptions.price.map((price) => (
               <option key={price} value={price}>
                 {price}
