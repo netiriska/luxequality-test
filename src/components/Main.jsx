@@ -10,6 +10,7 @@ import MarkersDetails from "./MarkersDetails";
 
 export default function Main() {
   const [markers, setMarkers] = useState([]);
+  const [filteredMarkers, setFilteredMarkers] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [visibleMarkers, setVisibleMarkers] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState("");
@@ -54,11 +55,11 @@ export default function Main() {
     const map = mapRef.current;
     const updateVisibleMarkers = () => {
       const bounds = map.getBounds();
-      const filteredMarkers = markers.filter((marker) =>
+      const boundMarkers = filteredMarkers.filter((marker) =>
         bounds.contains(marker.geocode)
       );
-      setVisibleMarkers(filteredMarkers);
-      console.log("Visible Markers:", filteredMarkers);
+      setVisibleMarkers(boundMarkers);
+      console.log("Visible Markers:", boundMarkers);
     };
 
     map.on("zoomend", updateVisibleMarkers);
@@ -74,11 +75,29 @@ export default function Main() {
       map.off("click", resetSelectedMarker);
       map.off("movestart", resetSelectedMarker);
     };
-  }, [markers]);
+  }, [filteredMarkers]);
 
   const handlePriceChange = (event) => {
     setSelectedPrice(event.target.value);
   };
+
+  useEffect(() => {
+    setFilteredMarkers(
+      markers.filter((marker) => {
+        const price = parseFloat(marker.price.split(" ")[1]);
+        switch (selectedPrice) {
+          case "Under UAH10000":
+            return price < 10000;
+          case "UAH10000-15000":
+            return price >= 10000 && price <= 15000;
+          case "Over UAH15000":
+            return price > 15000;
+          default:
+            return true;
+        }
+      })
+    );
+  }, [selectedPrice, markers]);
 
   return (
     <Container fluid={true}>
@@ -138,7 +157,6 @@ export default function Main() {
           <MarkersDetails
             selectedMarker={selectedMarker}
             visibleMarkers={visibleMarkers}
-            selectedPrice={selectedPrice}
           />
         </Col>
       </Row>
