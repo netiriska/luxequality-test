@@ -19,6 +19,10 @@ export default function Main() {
     console.log("Selected Marker:", marker);
   };
 
+  const resetSelectedMarker = () => {
+    setSelectedMarker(null);
+  };
+
   useEffect(() => {
     fetch("/markers.json")
       .then((response) => response.json())
@@ -54,12 +58,14 @@ export default function Main() {
 
     map.on("zoomend", updateVisibleMarkers);
     map.on("moveend", updateVisibleMarkers);
+    map.on("click", resetSelectedMarker);
 
     updateVisibleMarkers();
 
     return () => {
       map.off("zoomend", updateVisibleMarkers);
       map.off("moveend", updateVisibleMarkers);
+      map.off("click", resetSelectedMarker);
     };
   }, [markers]);
 
@@ -77,6 +83,7 @@ export default function Main() {
             center={[50.4500336, 30.5241361]}
             zoom={13}
             ref={mapRef}
+            onClick={resetSelectedMarker}
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
